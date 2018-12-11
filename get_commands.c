@@ -6,11 +6,11 @@
 /*   By: amoroziu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 11:20:41 by amoroziu          #+#    #+#             */
-/*   Updated: 2018/12/05 11:20:50 by amoroziu         ###   ########.fr       */
+/*   Updated: 2018/12/06 12:01:53 by amoroziu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.c"
+#include "push_swap.h"
 
 static int	correct(char *command)
 {
@@ -29,26 +29,40 @@ static int	correct(char *command)
 	return (1);
 }
 
-int			get_commands(char **commands)
+static int	split_and_check(char ***commands)
+{
+	char	*temp;
+	int		i;
+
+	temp = **commands;
+	*commands = ft_strsplit(**commands, '\n');
+	i = -1;
+	while ((*commands)[++i])
+		if (!correct((*commands)[i]))
+			return (0);
+	return (1);
+}
+
+int			get_commands(char ***commands)
 {
 	char	*command;
-	char	*temp;
+	char	*buf;
+	int		i;
+	int		rs;
 
-	while (get_next_line(1, &command))
+	buf = ft_strnew(100);
+	command = ft_strnew(100);
+	while ((rs = read(0, buf, 100)))
 	{
-		if (ft_strlen(command) < 2 || ft_strlen(command) > 3)
-			return (0);
-		if (!correct(command))
-			return (0);
-		if (**commands)
-		{
-			temp = *commands;
-			*commands = ft_strjoin(*commands, " ");
-			ft_strdel(&temp);
-		}
-		temp = *commands;
-		*commands = ft_strjoin(*commands, command);
-		ft_strdel(&temp);
+		buf[rs] = '\0';
+		i = -1;
+		while (++i <= rs)
+			command[i] = buf[i];
+		**commands = ft_freejoin(**commands, command);
 	}
 	ft_strdel(&command);
+	if ((**commands)[ft_strlen(**commands) - 1] != '\n' )
+		return (0);
+	(**commands)[ft_strlen(**commands) - 1] = '\0';
+	return (split_and_check(commands));
 }

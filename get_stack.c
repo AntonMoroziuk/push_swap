@@ -6,13 +6,28 @@
 /*   By: amoroziu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 10:29:01 by amoroziu          #+#    #+#             */
-/*   Updated: 2018/12/05 10:29:03 by amoroziu         ###   ########.fr       */
+/*   Updated: 2018/12/06 14:47:31 by amoroziu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int		pseudo_atoi(char *str, int *nb)
+static void		lstadd(int nb, t_stack *stack)
+{
+	t_number	*new;
+
+	new = (t_number*)malloc(sizeof(t_number));
+	new->next = NULL;
+	new->nb = nb;
+	if (!stack->head)
+		stack->head = new;
+	if (stack->tail)
+		stack->tail->next = new;
+	stack->tail = new;
+	stack->size++;
+}
+
+static int		pseudo_atoi(char *str, t_stack *stack)
 {
 	long int	res;
 	int			i;
@@ -30,80 +45,55 @@ static int		pseudo_atoi(char *str, int *nb)
 		if (res > 2147483647 || res < -2147483648)
 			break ;
 	}
-	if (ft_isdigit(str[i]) || !str[i])
+	if (ft_isdigit(str[i]) || str[i])
 		return (0);
-	*nb = res;
+	lstadd(res, stack);
 	return (1);
 }
 
-static void		expand_stack(t_stack *stack, int count)
+static int		number_repeats(t_stack *stack, int nb)
 {
-	int		*new_stack;
-	int		i;
+	t_number	*cur;
 
-	if (!stack->numbers)
+	cur = stack->head;
+	while (cur->next)
 	{
-		stack->numbers = (int*)malloc(sizeof(int) * count);
-		stack->size = count;
-	}
-	else
-	{
-		new_stack = (int*)malloc(sizeof(int) * (stack->size + count));
-		i = -1;
-		while (++i < stack->size)
-			new_stack[i] = stack->numbers[i];
-		free(stack->numbers);
-		stack->numbers = new_stack;
-		stack->size += count;
-	}
-}
-
-static int		number_repeats(t_stack *stack, int nb, int end)
-{
-	int		i;
-
-	i = -1;
-	while (++i < end)
-		if (stack->numbers[i] == nb)
+		if (cur->nb == nb)
 			return (1);
+		cur = cur->next;
+	}
 	return (0);
 }
 
 static int		get_numbers_from_string(t_stack *stack, char *str)
 {
 	int			i;
-	int			j;
-	int			nb;
 	char		**str_nums;
 
 	i = -1;
 	while (str[++i])
-		if (is_space(str[i]) && str[i] != ' ')
+		if (ft_isspace(str[i]) && str[i] != ' ')
 			str[i] = ' ';
-	if (!(str_nums = ft_strsplit(str)))
-		return ;
-	i = stack->size;
-	j = -1;
-	expand_stack(stack, ft_arr_size(str_nums));
-	while (i < stack->size)
+	if (!(str_nums = ft_strsplit(str, ' ')))
+		return (0);
+	i = -1;
+	while (str_nums[++i])
 	{
-		if (!pseudo_atoi(str_nums[++j], stack->numbers + i))
+		if (!pseudo_atoi(str_nums[i], stack))
 			return (0);
-		if (number_repeats(stack, *(stack->numbers + i), i))
-			return (0):
-		i++;
+		if (number_repeats(stack, stack->tail->nb))
+			return (0);
 	}
 	return (1);
 }
 
 int				get_stack(int argc, char **argv, t_stack *stack)
 {
-	char		*temp;
 	int			i;
 
-	stack->numbers = NULL;
-	stack->head = 0;
 	stack->size = 0;
+	stack->head = NULL;
+	stack->tail = NULL;
 	i = 0;
 	while (++i < argc)
 		if (!get_numbers_from_string(stack, argv[i]))

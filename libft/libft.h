@@ -6,7 +6,7 @@
 /*   By: amoroziu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 15:39:02 by amoroziu          #+#    #+#             */
-/*   Updated: 2018/11/26 13:56:20 by amoroziu         ###   ########.fr       */
+/*   Updated: 2018/12/06 14:44:50 by amoroziu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int				ft_isalpha(int c);
 int				ft_isdigit(int c);
 int				ft_isalnum(int c);
 int				ft_isascii(int c);
+int				ft_isspace(int c);
 int				ft_isprint(int c);
 int				ft_toupper(int c);
 int				ft_tolower(int c);
@@ -95,6 +96,7 @@ void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void			ft_lstpushback(t_list **lst, t_list *new);
 char			*ft_doubleitoa(double nb, int presicion);
+char			*ft_freejoin(char *s1, char *s2);
 int				ft_arr_size(char **arr);
 int				ft_printf(const char *format, ...);
 int				get_format(const char *format, int *i, t_format *arg_format);

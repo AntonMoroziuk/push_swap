@@ -6,7 +6,7 @@
 #    By: amoroziu <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/10 13:02:27 by amoroziu          #+#    #+#              #
-#    Updated: 2018/11/26 15:35:21 by amoroziu         ###   ########.fr        #
+#    Updated: 2018/12/06 12:56:33 by amoroziu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRC =	ft_bzero.c \
 		ft_isdigit.c \
 		ft_isalnum.c \
 		ft_isascii.c \
+		ft_isspace.c \
 		ft_isprint.c \
 		ft_toupper.c \
 		ft_tolower.c \
@@ -73,6 +74,7 @@ SRC =	ft_bzero.c \
 		ft_lstpushback.c \
 		ft_printf.c \
 		ft_doubleitoa.c \
+		ft_freejoin.c \
 		get_next_line.c \
 		ft_arr_size.c \
 		conversation.c \
