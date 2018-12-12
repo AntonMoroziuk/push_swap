@@ -41,10 +41,6 @@ int				is_sorted(t_stack *stack);
 int				index_value(int idx, t_stack *stack);
 void			medium_sort(t_stack *a);
 void			easy_sort(t_stack *a);
-void			work_with_pivot(t_stack *a, t_stack *b,
-	t_group *old, t_group *new);
-void			swap_at_indexes(t_stack *stack, int i);
-void			quick_sort(t_stack *a);
 void			move_to_top(t_stack *a, int elem_idx);
 void			rotate(t_stack *stack);
 void			swap(t_stack *stack);

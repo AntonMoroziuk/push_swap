@@ -27,12 +27,10 @@ SRC_CHECKER =	checker.c \
 SRC_PUSH_SWAP = commands.c \
 				get_stack.c \
 				sorter.c \
-				max_sort.c \
-				quick_sort.c \
 				is_sorted.c \
-				swap_at_indexes.c \
-				work_with_pivot.c \
-				insertion_sort.c
+				insertion_sort.c \
+				move_to_top.c
+
 
 FLAGC = -Wall -Werror -Wextra
 
@@ -40,7 +38,10 @@ OBJ_CHECKER = $(SRC_CHECKER:%.c=%.o)
 
 OBJ_PUSH_SWAP = $(SRC_PUSH_SWAP:%.c=%.o)
 
-all: $(CHECKER) $(PUSH_SWAP)
+all: $(LIB) $(CHECKER) $(PUSH_SWAP)
+
+$(LIB):
+	@make -C libft
 
 $(CHECKER): $(SRC_CHECKER)
 	@gcc $(FLAGC) -c $(SRC_CHECKER)
@@ -51,9 +52,11 @@ $(PUSH_SWAP): $(SRC_PUSH_SWAP)
 	@gcc $(FLAGC) $(OBJ_PUSH_SWAP) $(LIB) -o $(PUSH_SWAP)
 
 clean:
+	@make clean -C libft
 	@rm -f $(OBJ_CHECKER) $(OBJ_PUSH_SWAP)
 
 fclean: clean
+	@make fclean -C libft
 	@rm -f $(CHECKER) $(PUSH_SWAP)
 
 re: fclean all

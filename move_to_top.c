@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   delete_stack.c                                     :+:      :+:    :+:   */
+/*   move_to_top.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amoroziu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/08 14:55:07 by amoroziu          #+#    #+#             */
-/*   Updated: 2018/12/12 11:34:14 by amoroziu         ###   ########.fr       */
+/*   Created: 2018/12/12 11:21:24 by amoroziu          #+#    #+#             */
+/*   Updated: 2018/12/12 11:33:38 by amoroziu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	delete_stack(t_stack *stack)
+void		move_to_top(t_stack *a, int elem_idx)
 {
-	t_number	*temp;
-
-	temp = stack->head;
-	while (temp)
+	if (elem_idx == 0 || elem_idx >= a->size)
+		return ;
+	if (a->size - elem_idx > elem_idx)
 	{
-		stack->head = temp;
-		temp = stack->head->next;
-		free(stack->head);
+		while (elem_idx > 0)
+		{
+			rotate(a);
+			ft_putendl("ra");
+			elem_idx--;
+		}
+	}
+	else
+	{
+		while (elem_idx <= a->size - 1)
+		{
+			rrotate(a);
+			ft_putendl("rra");
+			elem_idx++;
+		}
 	}
 }

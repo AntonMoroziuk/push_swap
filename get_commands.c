@@ -6,7 +6,7 @@
 /*   By: amoroziu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 11:20:41 by amoroziu          #+#    #+#             */
-/*   Updated: 2018/12/06 12:01:53 by amoroziu         ###   ########.fr       */
+/*   Updated: 2018/12/12 11:35:45 by amoroziu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,14 @@ static int	correct(char *command)
 static int	split_and_check(char ***commands)
 {
 	char	*temp;
+	char	**temp1;
 	int		i;
 
 	temp = **commands;
+	temp1 = *commands;
 	*commands = ft_strsplit(**commands, '\n');
+	ft_strdel(&temp);
+	free(temp1);
 	i = -1;
 	while ((*commands)[++i])
 		if (!correct((*commands)[i]))
@@ -51,17 +55,20 @@ int			get_commands(char ***commands)
 	int		rs;
 
 	buf = ft_strnew(100);
-	command = ft_strnew(100);
+	*commands = (char**)malloc(sizeof(char*));
+	**commands = ft_strnew(0);
 	while ((rs = read(0, buf, 100)))
 	{
 		buf[rs] = '\0';
 		i = -1;
-		while (++i <= rs)
-			command[i] = buf[i];
+		command = ft_strnew(ft_strlen(buf));
+		ft_strcpy(command, buf);
 		**commands = ft_freejoin(**commands, command);
+		ft_strdel(&command);
 	}
-	ft_strdel(&command);
-	if ((**commands)[ft_strlen(**commands) - 1] != '\n' )
+	ft_strdel(&buf);
+	if ((**commands)[ft_strlen(**commands) - 1] != '\n'
+		&& ft_strlen(**commands))
 		return (0);
 	(**commands)[ft_strlen(**commands) - 1] = '\0';
 	return (split_and_check(commands));

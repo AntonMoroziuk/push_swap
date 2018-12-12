@@ -80,10 +80,17 @@ static int		get_numbers_from_string(t_stack *stack, char *str)
 	while (str_nums[++i])
 	{
 		if (!pseudo_atoi(str_nums[i], stack))
+		{
+			arrdel(str_nums);
 			return (0);
+		}
 		if (number_repeats(stack, stack->tail->nb))
+		{
+			arrdel(str_nums);
 			return (0);
+		}
 	}
+	arrdel(str_nums);
 	return (1);
 }
 

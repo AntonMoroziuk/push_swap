@@ -6,7 +6,7 @@
 #    By: amoroziu <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/10 13:02:27 by amoroziu          #+#    #+#              #
-#    Updated: 2018/12/06 12:56:33 by amoroziu         ###   ########.fr        #
+#    Updated: 2018/12/12 11:46:42 by amoroziu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,6 +79,7 @@ SRC =	ft_bzero.c \
 		ft_arr_size.c \
 		conversation.c \
 		flag.c \
+		arrdel.c \
 		format.c \
 		length.c \
 		mfw.c \

@@ -6,7 +6,7 @@
 /*   By: amoroziu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/08 11:33:55 by amoroziu          #+#    #+#             */
-/*   Updated: 2018/12/08 11:34:02 by amoroziu         ###   ########.fr       */
+/*   Updated: 2018/12/12 11:33:02 by amoroziu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,10 @@ void		easy_sort(t_stack *a)
 
 static void	sort(t_stack *a)
 {
-//	 if (a->size <= 3)
-//	 	easy_sort(a);
-	 //else if (a->size <= 20)
-	 medium_sort(a);
-//	 else
-//	 else
-	 	//quick_sort(a);
+	if (a->size <= 3)
+		easy_sort(a);
+	else
+		medium_sort(a);
 }
 
 int			main(int argc, char **argv)
