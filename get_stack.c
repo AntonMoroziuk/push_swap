@@ -38,12 +38,14 @@ static int		pseudo_atoi(char *str, t_stack *stack)
 	sign = 1 - (str[i] == '-') * 2;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
+	if (!str[i])
+		return (0);
 	while (ft_isdigit(str[i]))
 	{
 		res = res * 10 + (str[i] - '0') * sign;
 		i++;
 		if (res > 2147483647 || res < -2147483648)
-			break ;
+			return (0);
 	}
 	if (ft_isdigit(str[i]) || str[i])
 		return (0);

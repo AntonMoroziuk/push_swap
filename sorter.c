@@ -42,9 +42,12 @@ int			main(int argc, char **argv)
 {
 	t_stack	a;
 
-	if (argc < 2 || !get_stack(argc, argv, &a))
+	if (argc == 1)
+		return (0);
+	else if (!get_stack(argc, argv, &a))
 		ft_putendl_fd("Error", 2);
 	else if (!is_sorted(&a))
 		sort(&a);
+	system("leaks push_swap");
 	return (0);
 }

@@ -55,6 +55,9 @@ int			execute_commands(char **commands, t_stack *a)
 		execute(commands[i], a, &b);
 	arr_del(commands);
 	if (b.size)
+	{
+		delete_stack(&b);
 		return (0);
+	}
 	return (1);
 }

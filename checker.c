@@ -36,5 +36,6 @@ int			main(int argc, char **argv)
 		ft_putendl("OK");
 	if (correct_stack)
 		delete_stack(&a);
+	system("leaks checker");
 	return (0);
 }
