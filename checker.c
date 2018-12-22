@@ -6,7 +6,7 @@
 /*   By: amoroziu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 10:20:21 by amoroziu          #+#    #+#             */
-/*   Updated: 2018/12/12 11:34:40 by amoroziu         ###   ########.fr       */
+/*   Updated: 2018/12/19 14:37:10 by amoroziu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,5 @@ int			main(int argc, char **argv)
 		ft_putendl("OK");
 	if (correct_stack)
 		delete_stack(&a);
-	system("leaks checker");
 	return (0);
 }

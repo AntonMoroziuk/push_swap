@@ -6,7 +6,7 @@
 #    By: amoroziu <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/06 12:43:34 by amoroziu          #+#    #+#              #
-#    Updated: 2018/12/06 12:43:36 by amoroziu         ###   ########.fr        #
+#    Updated: 2018/12/19 11:50:40 by amoroziu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,12 @@ SRC_PUSH_SWAP = commands.c \
 				sorter.c \
 				is_sorted.c \
 				insertion_sort.c \
-				move_to_top.c
+				sort_in_a.c \
+				move_to_top.c \
+				return.c \
+				arr_func.c \
+				recursive_sort.c \
+				find_index.c
 
 
 FLAGC = -Wall -Werror -Wextra

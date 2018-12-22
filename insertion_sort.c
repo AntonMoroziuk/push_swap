@@ -6,11 +6,34 @@
 /*   By: amoroziu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 12:38:48 by amoroziu          #+#    #+#             */
-/*   Updated: 2018/12/12 11:35:54 by amoroziu         ###   ########.fr       */
+/*   Updated: 2018/12/18 15:39:30 by amoroziu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	exec_easy_sort(t_stack *a, t_stack *b)
+{
+	if (a->size == 2 && a->head->nb > a->tail->nb)
+		swap(a);
+	else if (a->head->nb < a->tail->nb && a->tail->nb < a->head->next->nb)
+	{
+		push(a, b);
+		swap(a);
+		push(b, a);
+	}
+	else if (a->head->nb > a->head->next->nb && a->head->nb < a->tail->nb)
+		swap(a);
+	else if (a->head->nb < a->head->next->nb && a->head->nb > a->tail->nb)
+		rrotate(a);
+	else if (a->tail->nb < a->head->nb && a->tail->nb > a->head->next->nb)
+		rotate(a);
+	else
+	{
+		swap(a);
+		rrotate(a);
+	}
+}
 
 static int	find_min(t_stack *a)
 {
@@ -43,6 +66,12 @@ void		min_sort(t_stack *a, t_stack *b)
 			ft_putendl("pa");
 			push(b, a);
 		}
+	else if (a->size <= 3)
+	{
+		easy_sort(a);
+		exec_easy_sort(a, b);
+		min_sort(a, b);
+	}
 	else
 	{
 		move_to_top(a, find_min(a));

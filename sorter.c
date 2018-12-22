@@ -6,7 +6,7 @@
 /*   By: amoroziu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/08 11:33:55 by amoroziu          #+#    #+#             */
-/*   Updated: 2018/12/12 11:33:02 by amoroziu         ###   ########.fr       */
+/*   Updated: 2018/12/19 14:37:02 by amoroziu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		easy_sort(t_stack *a)
 {
-	if (a->size == 1 || (a->size == 2 && a->head->nb > a->tail->nb))
+	if (a->size == 1 || (a->size == 2 && a->head->nb < a->tail->nb))
 		return ;
 	else if (a->size == 2 && a->head->nb > a->tail->nb)
 		ft_putendl("sa");
@@ -34,8 +34,10 @@ static void	sort(t_stack *a)
 {
 	if (a->size <= 3)
 		easy_sort(a);
-	else
+	else if (a->size <= 20)
 		medium_sort(a);
+	else
+		recursive_sort(a);
 }
 
 int			main(int argc, char **argv)
@@ -48,6 +50,5 @@ int			main(int argc, char **argv)
 		ft_putendl_fd("Error", 2);
 	else if (!is_sorted(&a))
 		sort(&a);
-	system("leaks push_swap");
 	return (0);
 }

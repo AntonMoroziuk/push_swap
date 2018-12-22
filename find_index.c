@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_to_top.c                                      :+:      :+:    :+:   */
+/*   find_index.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amoroziu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/12 11:21:24 by amoroziu          #+#    #+#             */
-/*   Updated: 2018/12/18 15:41:22 by amoroziu         ###   ########.fr       */
+/*   Created: 2018/12/18 15:40:56 by amoroziu          #+#    #+#             */
+/*   Updated: 2018/12/19 12:04:31 by amoroziu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		move_to_top(t_stack *a, int elem_idx)
+int		find_index(t_stack *stack, t_number *nb)
 {
-	if (elem_idx == 0 || elem_idx >= a->size)
-		return ;
-	if (a->size - elem_idx > elem_idx)
+	int			i;
+	t_number	*cur;
+
+	i = 0;
+	cur = stack->head;
+	while (cur != nb)
 	{
-		while (elem_idx > 0)
-		{
-			rotate(a);
-			ft_putendl("ra");
-			elem_idx--;
-		}
+		i++;
+		cur = cur->next;
 	}
-	else
-	{
-		while (elem_idx <= a->size - 1)
-		{
-			rrotate(a);
-			ft_putendl("rra");
-			elem_idx++;
-		}
-	}
+	return (i);
 }
